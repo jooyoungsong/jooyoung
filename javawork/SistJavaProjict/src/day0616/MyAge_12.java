@@ -28,7 +28,7 @@ public class MyAge_12 {
 		
 		Calendar cal=Calendar.getInstance();
 		System.out.println("이름: "+name);
-		System.out.println("태어난 연도: "+mybirth+"년");
+		System.out.println("태어난 연도: "+myBirth+"년");
 		System.out.println("나이: "+ (cal.get(cal.YEAR)-myBirth)+"세");
 		
 		
