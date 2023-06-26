@@ -107,7 +107,7 @@ public class QuizForWhile_02 {
 		System.out.println("합계: "+sum+"점");
 	}
 	
-	public static void quiz3()
+	public static void quiz4()
 	{
 	 
 	 /*
@@ -158,7 +158,8 @@ public class QuizForWhile_02 {
 		
 		//quiz1();
 		//quiz2();
-		quiz3();
+		//quiz3();
+		quiz4();
 
 	}
 

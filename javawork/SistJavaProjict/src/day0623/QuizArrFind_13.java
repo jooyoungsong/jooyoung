@@ -13,7 +13,7 @@ public class QuizArrFind_13 {
 		
 		String [] stuNames= {"이성신","이민규","박병주","최성현","김영준","강연주","최진평","고은비","송주영"};
 		String name;
-		boolean flag;  //참거짓 문제 ->존재여부로 활용
+		boolean flag;  //참거짓 문제 ->존재여부로 활용 //클래스에서 boolean값은 false가 기본값이다.
 		
 		while(true)
 		{
@@ -34,7 +34,7 @@ public class QuizArrFind_13 {
 					}				    
 			}
 			
-			if(!flag)                  //if는 조건이 참일 때만 수행한다.
+			if(!flag)   //flag==false    //if는 조건이 참일 때만 수행한다.
 			{
 				System.out.println(name+"은 검색 결과에 없습니다");
 			}
