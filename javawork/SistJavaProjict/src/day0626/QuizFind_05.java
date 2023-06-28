@@ -34,7 +34,7 @@ public class QuizFind_05 {
 				break;
 			}
 			
-			//배열 개수만큼 반복해서 입력한 숫자 찾기
+			//배열 개수만큼 반복해서 입력한 숫자 찾기/ㄹ 
 			for(int i=0;i<arrNums.length;i++)
 			{
 				if(num==arrNums[i])

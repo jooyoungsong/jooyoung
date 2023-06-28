@@ -16,11 +16,11 @@ public class LottoSort_03 {
 			lotto[i]=(int)(Math.random()*45)+1;
 			
 			//중복처리
-			for(int j=0;j<i;j++)
+			for(int j=0;j<i;j++)    //j는 변수의 배열이고
 			{
-				if(lotto[i]==lotto[j])
+				if(lotto[i]==lotto[j])  //lotto[j]는 배열의 해당 값이다.
 				{
-					i--;      //같은 번지에 다시 값을 구하기 위함_로또 index(배열) i와 j가 같다면 i는 빼줘야 중복이 제거됨
+					i--;      //같은 번지에 다시 값을 구하기 위함_로또 index(배열) i와 j가 같다면 i는 빼줘야 중복이 제거됨 
 					break;    //중복제거 후 i++로 가야하기 때문에 break 써준다. 그럼 반복문 for문 빠져나간다.
 				}
 			}
