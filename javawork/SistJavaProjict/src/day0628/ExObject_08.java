@@ -1,5 +1,7 @@
 package day0628;
 
+import java.io.Writer;
+
 class Apple{
 	
 	private String writer;

@@ -10,7 +10,9 @@ public class SawonMain {
 		Sawon.getTitle();
 		
 		for(Sawon s: sawon)  //사원 폴더에서 가져오겠다
-			System.out.println(s.getSawonName()+"\t"+s.getPay()+"\t"+s.getFamilysu()+"\t"+s.getTimesu()+"\t"+s.getFamilysudang()+"\t"+s.getTimeSudang()+"\t"+s.getTotalPay());
+			System.out.println(s.getSawonName()+"\t"+s.getPay()+
+					"\t"+s.getFamilysu()+"\t"+s.getTimesu()+"\t"+s.getFamilysudang()+
+					"\t"+s.getTimeSudang()+"\t"+s.getTotalPay());
 		
 	}
 
