@@ -63,7 +63,7 @@ public class SwingRadioCheck_01 extends JFrame implements ActionListener{
 		
 		lblMessage=new JLabel("Have a Nice Day!!!",icon,JLabel.CENTER);
 		lblMessage.setHorizontalTextPosition(JLabel.LEFT);
-		lblMessage.setBorder(new LineBorder(Color.green,2)); //라인굵기
+		lblMessage.setBorder(new LineBorder(Color.green,2)); //라인굵기 2
 		this.add("Center",lblMessage);
 		
 		//하단패널에 보더로 감싼 4개의 checkbox버튼 만들기
