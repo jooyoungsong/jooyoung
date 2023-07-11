@@ -585,3 +585,284 @@ select gender 성별, count(gender) ||'명' 인원수 , avg(pay) 평균급여 from sawon g
 
 --부서별 인원수와 평균급여를 구하되 인원이 4명 이상인 경우에만 출력하도록 하세요
 select buseo 부서,count(buseo) 인원수, avg(pay) from sawon group by buseo having count(buseo)>=4;
+
+
+--7/10 문제
+--Q1. emp에서 ename을 empname으로 바꾸세요
+alter table emp rename column ename to empname;
+select * from emp;
+
+--Q2. gift에서 7번 노트북을 아이패드로 바꾸세요
+update gift set gname='아이패드' where gno=7;
+select * from gift;
+rollback;
+
+--Q3. gift에 10번 아이폰 9000001-1000000 한행을 추가하세요
+insert into gift values (10,'아이폰',900001,1000000);
+select* from gift;
+
+--Q4. member에서 1003 서새알 멤버를 삭제하시오
+delete from member where name='서새알';
+select * from member;
+
+--Q5. emp에서 입사일이 82/01/23인 사람의 이름,부서번호,급여를 출력하시오
+select empname 이름, deptno 부서번호, sal 급여 from emp where hiredate='82/01/23';
+
+--Q6. emp에서 직무별로 최대급여,최소급여,총급여,평균급여를 출력하시오
+select job 직무, max(sal) 최대급여, min(sal) 최소급여, sum(sal) 총급여, round(avg(sal),0) 평균급여 from emp group by job;
+
+--Join
+
+--1. emp와 dept를 조인해서 emp사람들의 부서명을 구해보자
+--사원명  부서명  
+
+select e.empname, d.dname from emp e,dept d where e.deptno=d.deptno;
+select empname, dname from emp e, dept d where e.deptno=d.deptno;
+--테이블의 고유명사일 경우, e와 d 생략해도 된다
+
+
+--student와 professor를 조인하여 다음과 같이 출력하시오
+--학번  학생명  지도교수명
+select s.studno 학번, s.name 학생명, p.name 지도교수명 from student s, professor p where s.profno=p.profno;
+
+--학번  학생명  제1전공명 
+select s.studno 학번, s.name 학생명, d.dname 제1전공명 from student s, department d where s.deptno1=d.deptno;
+
+--교수명  직급  학과명
+select p.name 교수명, p.position 직급, d.dname 학과명 from professor p, department d where p.deptno=d.deptno;
+
+--사원번호  사원명  근무도시
+--e1111 smith new york
+select empno 사원번호, empname 사원명, loc 근무도시 from emp e, dept d where e.deptno=d.deptno;
+
+--판매테이블 product join
+--판매일자  과자명  전체 판매액
+select to_char(to_date(p_date),'yyyy-mm-dd') 판매일자, p_name 과자명, p_total "전체 판매액" from panmae pa,product pr where pa. p_code=pr.p_code;
+
+--primary 키와  foreign키를 생성한 조인테이블(부모,자식) 만들어보기
+
+--sequence 만들어볼게요
+create sequence seq_shop;
+
+--shop테이블(부모)
+create table shop(shop_num number(5) primary key, sangname varchar2(30), color varchar2(20));
+
+--5개의 상품추가
+insert into shop values(seq_shop.nextval,'요가매트','pink');
+insert into shop values(seq_shop.nextval,'아령','black');
+insert into shop values(seq_shop.nextval,'레깅스','beige');
+insert into shop values(seq_shop.nextval,'저지','white');
+insert into shop values(seq_shop.nextval,'양말','yellow');
+commit;
+
+delete from shop where shop_num=1;
+drop sequence seq_shop;
+
+--sequence 만들어볼게요
+create sequence seq_shop;
+
+--shop테이블(부모)
+create table shop(shop_num number(5) primary key, sangname varchar2(30), color varchar2(20));
+
+--5개의 상품추가
+insert into shop values(seq_shop.nextval,'요가매트','pink');
+insert into shop values(seq_shop.nextval,'아령','black');
+insert into shop values(seq_shop.nextval,'레깅스','beige');
+insert into shop values(seq_shop.nextval,'저지','white');
+insert into shop values(seq_shop.nextval,'양말','yellow');
+commit;
+
+--cart1...상품정보는 shop테이블의 shop_num값을 외부키로 지정
+create table cart1(idx number(5) primary key,shop_num number(5) CONSTRAINT cart_fk_shopnum REFERENCES shop(shop_num), cnt number(5), guipday date);
+
+--cart2...상품정보는 shop테이블의 shop_num값을 외부키로 지정
+--부모테이블의 상품을 지우면 그 상품과 관련된 카트를 자동으로 지워준다
+create table cart2(idx number(5) primary key, shop_num number(5) references shop(shop_num) on delete cascade, cnt number(5), guipday date);
+
+select * from shop order by shop_num;
+delete from shop where shop_num=6;
+
+--cart1에 상품추가 _1번
+insert into cart1 values(seq_shop.nextval,1,2,sysdate);
+insert into cart1 values(seq_shop.nextval,3,4,sysdate);
+insert into cart1 values(seq_shop.nextval,2,1,sysdate);
+insert into cart1 values(seq_shop.nextval,4,2,sysdate);
+insert into cart1 values(seq_shop.nextval,5,1,sysdate);
+
+select * from cart1;
+--insert into cart1 values(seq_shop.nextval,6,3,sysdate); 부모키에 없기에 무결성 제약조건에 위배된다.
+
+delete from cart1 where shop_num=4;
+delete from cart1 where shop_num=3;
+
+delete from cart2 where shop_num=4;
+
+
+--cart2에 상품추가
+insert into cart2 values(seq_shop.nextval,3,1,sysdate);
+insert into cart2 values(seq_shop.nextval,2,4,sysdate);
+insert into cart2 values(seq_shop.nextval,1,1,sysdate);
+insert into cart2 values(seq_shop.nextval,4,2,sysdate);
+insert into cart2 values(seq_shop.nextval,5,1,sysdate);
+
+--cart1: 부모 1,2,5 존재  cart2: 부모에 1,2,3,5가 존재
+
+
+--shop의 1번 상품 삭제될까요?
+--delete from shop where shop_num=1;
+--ORA-02292: 무결성 제약조건(JOOYOUNG.CART_FK_SHOPNUM)이 위배되었습니다- 자식 레코드가 발견되었습니다
+
+--cart2에서 3번 데이터 지워보자
+delete from shop where shop_num=3;
+rollback;
+
+commit;
+select * from cart2;
+
+--cart1에 담긴상품을 shop테이블과 join에서 자세히 출력
+--방법:
+select c1.idx, s.shop_num, s.sangname, s.color, cnt, c1.guipday from shop s,cart1 c1 where s.shop_num=c1.shop_num;
+
+
+--부모테이블
+
+--자식테이블(자식테이블에 연결된 부모가 있어도 부모를 삭제할 수 있으며, 부모테이블 삭제 시 자동으로 자식테이블 삭제된다.)
+
+--최종출력
+--주문번호   음식명   가격   개수   주문일자   (가격은 원단위 붙이고, 개수에는 개라고 붙이기)
+
+create sequence seq_Menu;
+create table Menu(m_num number(6) primary key, m_name varchar2(20), price number(6));
+select * from menu;
+
+create table MyOrder(idx number(6) primary key, m_num number(6) references Menu(m_num) on delete cascade, cnt number(5), o_date date);
+
+insert into menu values(seq_menu.nextval,'떡볶이',4000);
+insert into menu values(seq_menu.nextval,'순대',3000);
+insert into menu values(seq_menu.nextval,'어묵',1500);
+insert into menu values(seq_menu.nextval,'피카츄',2500);
+insert into menu values(seq_menu.nextval,'콜팝',5000);
+commit;
+
+insert into myorder values(seq_menu.nextval,1,5,sysdate);
+insert into myorder values(seq_menu.nextval,2,2,sysdate);
+insert into myorder values(seq_menu.nextval,3,6,sysdate);
+insert into myorder values(seq_menu.nextval,4,1,sysdate);
+insert into myorder values(seq_menu.nextval,5,3,sysdate);
+commit;
+
+select idx 주문번호,m_name 음식명, to_char(price,'l999,999,999') 가격, lpad(cnt,10) ||'개' 개수, lpad(o_date,10) 주문일자 from menu m,myorder o where m.m_num=o.m_num;
+
+-------------------------------------------------------------------------------------------------
+create table board (bno number(3) constraint board_pk_bno primary key, writer varchar2(20), subject varchar2(100), writeday date);
+
+--board에 5개 insert
+insert into board values(seq_sawon.nextval,'이수연','안녕 애들아',sysdate);
+insert into board values(seq_sawon.nextval,'효지니','오늘 만나자',sysdate);
+insert into board values(seq_sawon.nextval,'준상아','오늘 난 운동가',sysdate);
+insert into board values(seq_sawon.nextval,'피곤한 월요일','오늘 나는 아파서 병원가',sysdate);
+insert into board values(seq_sawon.nextval,'둘리','비 안오니',sysdate);
+commit;
+
+--answer라는 댓글(자식)
+--부모글 지우면 자식글 자동삭제 되게 만드세요
+create table answer (num number(5) constraint answer_pk_num primary key, bno number(3) constraint answer_fk_bno references board(bno) on delete cascade, nickname varchar2(20), content varchar2(30),writeday date);
+
+select * from board;
+
+--원하는 글에 댓글 추가하기
+insert into answer values(seq_sawon.nextval,14,'영지니','효지나 나 오늘 못나가',sysdate);
+insert into answer values(seq_sawon.nextval,12,'고슴도치','둘리야 지금 비 와',sysdate);
+insert into answer values(seq_sawon.nextval,14,'진영이','효지나 나랑 놀자',sysdate);
+insert into answer values(seq_sawon.nextval,15,'머슬맨','운동 잘하고 와',sysdate);
+insert into answer values(seq_sawon.nextval,13,'연하울','반가워',sysdate);
+commit;
+
+
+select * from answer;
+delete from answer where num=17;
+
+
+--join으로 출력
+--원글번호  작성자  작성자글  댓글단사람  댓글내용  원글날짜  댓글날짜 
+
+select b.bno 원글번호, writer 작성자, subject 작성자글, nickname 댓글단사람, content 댓글내용, b.writeday 원글날짜, a.writeday 댓글날짜 from board b,answer a where b.bno=a.bno;
+
+--14번 원글 삭제
+delete from board where bno=14;
+
+--board를 먼저 삭제
+drop table board; --외래 키에 의해 참조되는 고유/기본 키가 테이블에 있습니다
+
+--자식
+drop table answer;
+
+
+--shop,cart 모두 삭제
+--외부키로 연결이 된 경우, 자식테이블 먼저 삭제 후 부모테이블 삭제 가능
+drop table cart1;
+drop table cart2;
+drop table shop;
+
+
+select * from board;
+select * from answer;
+
+----------------------------------------------------------------------------------------
+--주문번호  주문자  음식명  가격  상호명  가게위치  배송지
+
+create sequence seq_food;
+create table food(fno number(5) primary key, foodname varchar2(20), price number(5), shopname varchar2(20), loc varchar(20));
+create table jumun(num number(5) primary key, name varchar(20), fno number(5) constraint jumun_pk_fno references food(fno), addr varchar2(20) );
+
+insert into food values(110,'삼겹살',25000,'333삼겹살','서울 강남');
+insert into food values(111,'곱창',28000,'곱창이야기','서울 역삼');
+insert into food values(112,'칼국수',15000,'칼칼한 칼국수','서울 합정');
+insert into food values(113,'연어',32000,'싱싱한연어랑','서울 용산');
+insert into food values(114,'샤브샤브',48000,'최고의샤브','서울 방배');
+commit;
+
+drop table food;
+drop table jumun;
+
+rollback;
+insert into food values(seq_food.nextval,'삼겹살',25000,'333삼겹살','서울 강남');
+insert into food values(seq_food.nextval,'곱창',28000,'곱창이야기','서울 역삼');
+insert into food values(seq_food.nextval,'칼국수',15000,'칼칼한 칼국수','서울 합정');
+insert into food values(seq_food.nextval,'연어',32000,'싱싱한연어랑','서울 용산');
+insert into food values(seq_food.nextval,'샤브샤브',48000,'최고의샤브','서울 방배');
+commit;
+
+select * from food;
+insert into jumun values(seq_food.nextval,'강남인',6,'서울 강남');
+insert into jumun values(seq_food.nextval,'오인영',8,'서울 홍대');
+insert into jumun values(seq_food.nextval,'설상인',9,'서울 용산');
+insert into jumun values(seq_food.nextval,'김나라',7,'서울 문래');
+insert into jumun values(seq_food.nextval,'여의주',10,'서울 여의도');
+commit;
+
+select num 주문번호, name 주문자, foodname 음식명, price 가격, shopname 상호명, loc 가게위치, addr 배송지 from food f,jumun j where f.fno=j.fno order by name;
+
+select * from food;
+select * from jumun;
+
+--7/10 과제
+create sequence seq_snsboard;
+create table snsboard(b_num number(5) primary key, nick varchar2(20), subject varchar2(20), content varchar(20), wday date);
+
+insert into snsboard values(seq_snsboard.nextval,'가','안녕','인사',sysdate);
+insert into snsboard values(seq_snsboard.nextval,'나','카페','홍보',sysdate);
+insert into snsboard values(seq_snsboard.nextval,'다','다이빙','취미',sysdate);
+insert into snsboard values(seq_snsboard.nextval,'라','음식','먹방',sysdate);
+insert into snsboard values(seq_snsboard.nextval,'마','오늘의 명언','명언',sysdate);
+insert into snsboard values(seq_snsboard.nextval,'바','요리','소개',sysdate);
+insert into snsboard values(seq_snsboard.nextval,'사','해외여행추천지','여행',sysdate);
+insert into snsboard values(seq_snsboard.nextval,'아','사회생활','꿀팁',sysdate);
+insert into snsboard values(seq_snsboard.nextval,'자','언어','공부',sysdate);
+insert into snsboard values(seq_snsboard.nextval,'차','메이크업샵','광고',sysdate);
+commit;
+
+select * from snsboard;
+drop table snsboard;
+
+select b_num 기본키, nick 닉네임, subject 제목, content 내용, wday 현재날짜 from snsboard;
