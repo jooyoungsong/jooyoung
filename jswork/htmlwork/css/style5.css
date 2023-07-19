@@ -1,0 +1,56 @@
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background: gray;
+    height: 100%;
+}
+
+#container{
+    position: absolute;
+    margin-left: -450px;
+    width: 900px;
+    height: 100p;
+    background: rgb(235, 210, 235);
+    left: 50%;
+}
+
+li{
+    display: inline-block;
+    list-style: none;
+    width: 150px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    background-color: plum;
+    font-size: 40px;
+    font-family: 'Dongle';
+    color: white;
+    border-radius: 30px;   
+}
+
+li:hover{
+    background-color: blanchedalmond;
+    color: brown;
+    box-shadow: 5px 5px 5px gray;
+    cursor: pointer;
+}
+
+ul{
+    text-align: center;
+}
+
+.list{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: 'Dongle';
+    font-size: 20pt;
+    
+}
+
+.list>p{
+    margin-left: 25px;
+    text-align: center;
+}
