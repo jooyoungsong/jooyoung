@@ -888,3 +888,23 @@ select * from myshop;
 create sequence seq_stu;
 
 create table mystudent (stu_num number(5) primary key, stu_name varchar2(20), stu_grade number(5), hp varchar2(20), addr varchar2(30), age number(5), sdate date);
+-----------------------------------------------------------
+--day0801
+create sequence seq_1;
+
+create table info(num number(5) primary key,
+name varchar2(20),hp varchar2(20),
+age number(3),photo varchar2(100));
+
+insert into info values(seq_1.nextval,'미니언즈5','010-555-6666',35,'../jquery_img/05.png');
+
+commit;
+-----------------------------------------------------------
+
+--team
+create table team (num number(5) primary key,
+name varchar2(20), addr varchar2(50), writeday date);
+
+insert into team values(seq_1.nextval,'길순이','서울시 강동구',sysdate);
+
+commit;
