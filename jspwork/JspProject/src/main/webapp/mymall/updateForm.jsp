@@ -1,3 +1,5 @@
+<%@page import="model.mymall.MallDao"%>
+<%@page import="model.mymall.MallDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -36,16 +38,24 @@
 		});
 	})
 </script>
+
+<%
+	String num=request.getParameter("num");
+	MallDao dao=new MallDao();
+	MallDto dto=dao.getData(num);
+%>
 </head>
 <body>
 <div>
-	<form action="addAction.jsp" method="post">
+	<form action="updateAction.jsp" method="post">
+	<input type="hidden" name="num" value="<%=num %>">
+	
 	<table class="table table-bordered" style="width:300px;">
 		<tr>
 			<th>상품명</th>
 			<td>
-				<input type="text" name="sangpum" class="form-control"
-				required="required" style="width:120px;" placeholder="이름">
+				<input type="text" name="sangpum" style="width:120px;"
+				value="<%=dto.getSangpum()%>">
 			</td>
 		</tr>	
 		<tr>
@@ -65,22 +75,22 @@
 		<tr>
 			<th>가격</th>
 			<td>
-				<input type="text" name="price" class="form-control"
-				required="required" style="width:120px;" placeholder="가격">
+				<input type="text" name="price" style="width:120px;"
+				value="<%=dto.getPrice()%>">
 			</td>
 		</tr>	
 		<tr>
 			<th>입고일</th>
 			<td>
-				<input type="date" name="ipgoday" class="form-control"
-				required="required" style="width:120px;" placeholder="입고일">
+				<input type="date" name="ipgoday" style="width:120px;"
+				value="<%=dto.getIpgoday()%>">
 			</td>
 		</tr>	
 		<tr>
 			<td colspan="2" align="center">
-				<button type="submit" class="btn btn-info">전송</button>
-				<button type="button" class="btn btn-success"
-				 onclick="location.href='list.jsp'">목록</button>
+				<button type="submit"  value="수정" class="btn btn-danger">수정</button>
+				<button type="button" value="목록" class="btn btn-success"
+				onclick="location.href='list.jsp'">목록</button>
 			</td>
 		</tr>
 	</table>

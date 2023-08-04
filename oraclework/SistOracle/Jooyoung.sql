@@ -959,3 +959,8 @@ photo varchar2(50), price number(5), ipgoday varchar2(20), writeday date);
 
 select * from mymall;
 delete from mymall where num=51;
+
+------------------------------------------------------------------
+--day0804(1)
+create table intro(intro_num number(5) primary key, intro_name varchar2(10),intro_blood varchar2(5),
+intro_hp varchar2(20), intro_city varchar2(30), gaipday date);

@@ -1,5 +1,3 @@
-<%@page import="model.mymall.MallDao"%>
-<%@page import="model.mymall.MallDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,27 +11,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
-		//한글엔코딩
-		request.setCharacterEncoding("utf-8");
-		
-		//데이터읽기
-		String sangpum=request.getParameter("sangpum");
-		String photo=request.getParameter("photo");
-		String price=request.getParameter("price");
-		String ipgoday=request.getParameter("ipgoday");
-	
-		//dto에 담기
-		MallDto dto=new MallDto();
-		dto.setSangpum(sangpum);
-		dto.setPhoto(photo);
-		dto.setPrice(price);
-		dto.setIpgoday(ipgoday);
-		
-		MallDao dao=new MallDao();
-		dao.insertMyMall(dto);
-		
-		response.sendRedirect("list.jsp");
-	%>
+
 </body>
 </html>

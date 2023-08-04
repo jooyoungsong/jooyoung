@@ -13,27 +13,26 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
-		//한글엔코딩
-		request.setCharacterEncoding("utf-8");
-		
-		//데이터읽기
-		String sangpum=request.getParameter("sangpum");
-		String photo=request.getParameter("photo");
-		String price=request.getParameter("price");
-		String ipgoday=request.getParameter("ipgoday");
+<%
+	String sangpum=request.getParameter("sangpum");
+	String photo=request.getParameter("photo");
+	String price=request.getParameter("price");
+	String ipgoday=request.getParameter("ipgoday");
+	String num=request.getParameter("num");
 	
-		//dto에 담기
-		MallDto dto=new MallDto();
-		dto.setSangpum(sangpum);
-		dto.setPhoto(photo);
-		dto.setPrice(price);
-		dto.setIpgoday(ipgoday);
-		
-		MallDao dao=new MallDao();
-		dao.insertMyMall(dto);
-		
-		response.sendRedirect("list.jsp");
-	%>
+	MallDto dto=new MallDto();
+	
+	dto.setSangpum(sangpum);
+	dto.setPhoto(photo);
+	dto.setPrice(price);
+	dto.setIpgoday(ipgoday);
+	dto.setNum(num);
+	
+	MallDao dao=new MallDao();
+	
+	dao.updateMall(dto);
+	
+	response.sendRedirect("list.jsp");
+%>
 </body>
 </html>
