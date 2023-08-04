@@ -908,3 +908,54 @@ name varchar2(20), addr varchar2(50), writeday date);
 insert into team values(seq_1.nextval,'길순이','서울시 강동구',sysdate);
 
 commit;
+
+-------------------------------------------------------------
+--day0802(1)
+create table myfood(num number(3) primary key, foodname varchar2(20), foodphoto varchar(50),
+price number(5), cnt number(5));
+
+insert into myfood values(seq_food.nextval,'리조또','../Food/5.jpg',12000,2);
+
+commit;
+
+select * from myfood;
+
+---------------------------------------------------------------
+--day0802(2)
+create table shop(num number(3) primary key,
+sangpum varchar2(30), color varchar2(20), price number(5),
+imgname varchar2(50));
+
+insert into shop values (seq1.nextval,'롱원피스','white',88000,'../image/28.jpg');
+
+commit;
+select*from shop;
+delete shop where num=24;
+--------------------------------------------------------------
+--day0802(3)
+create table myfriend(num number(3) primary key, fname varchar2(20), fhp varchar2(30), faddr varchar2(50), gaipday date);
+
+insert into myfriend values(seq1.nextval,'다롱이','010-555-6666','제주',sysdate);
+commit;
+select * from myfriend;
+---------------------------------------------------------------
+--day0802(4)
+create table sinsang(num number(5) primary key, name varchar2(20), addr varchar2(30), sdate date);
+
+---------------------------------------------------------------
+--day0803(1)
+create table myteam(num number(3) primary key, tname varchar2(20),
+driver varchar2(10), taddr varchar2(50), writeday date);
+
+select * from myteam;
+
+delete from myteam where num=41;
+rollback;
+
+----------------------------------------------------------------
+--day0803(2)
+create table mymall(num number(3) primary key, sangpum varchar2(30),
+photo varchar2(50), price number(5), ipgoday varchar2(20), writeday date);
+
+select * from mymall;
+delete from mymall where num=51;

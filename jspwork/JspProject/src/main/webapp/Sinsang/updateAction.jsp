@@ -1,5 +1,5 @@
 <%@page import="model.sinsang.SinsangDao"%>
-<%@page import="jakarta.websocket.SendResult"%>
+<%@page import="model.sinsang.SinsangDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,14 +13,24 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-	//삭제메소드 호출
-	String num=request.getParameter("num");
-	SinsangDao dao=new SinsangDao();
-	dao.deleteSinsang(num);
-	
-	//리스트로 이동
-	response.sendRedirect("list.jsp");
-%>
+	<%
+		String name=request.getParameter("name");
+		String addr=request.getParameter("addr");
+		String num=request.getParameter("num");
+		
+		//입력데이터를 dto로 묶어서
+		SinsangDto dto=new SinsangDto();
+		
+		dto.setName(name);
+		dto.setAddr(addr);
+		dto.setNum(num);
+		
+		//insert 메소드 전달
+		SinsangDao dao=new SinsangDao();
+		dao.updateSinsang(dto);
+		
+		//출력...jsp로 이동...url이 바뀜
+		response.sendRedirect("list.jsp");
+	%>
 </body>
 </html>

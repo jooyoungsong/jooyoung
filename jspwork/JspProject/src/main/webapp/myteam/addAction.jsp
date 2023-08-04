@@ -1,5 +1,5 @@
-<%@page import="model.sinsang.SinsangDao"%>
-<%@page import="jakarta.websocket.SendResult"%>
+<%@page import="model.myteam.TeamDto"%>
+<%@page import="model.myteam.TeamDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,12 +14,18 @@
 </head>
 <body>
 <%
-	//삭제메소드 호출
-	String num=request.getParameter("num");
-	SinsangDao dao=new SinsangDao();
-	dao.deleteSinsang(num);
+	String name=request.getParameter("name");
+	String driver=request.getParameter("driver");
+	String addr=request.getParameter("addr");
 	
-	//리스트로 이동
+	TeamDto dto=new TeamDto();
+	dto.setName(name);
+	dto.setDriver(driver==null?"없음":"있음");
+	dto.setAddr(addr);
+	
+	TeamDao db=new TeamDao();
+	db.insertMyTeam(dto);
+	
 	response.sendRedirect("list.jsp");
 %>
 </body>

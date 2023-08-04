@@ -1,5 +1,4 @@
-<%@page import="model.sinsang.SinsangDao"%>
-<%@page import="jakarta.websocket.SendResult"%>
+<%@page import="model.mymall.MallDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,15 +11,11 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <title>Insert title here</title>
 </head>
-<body>
 <%
-	//삭제메소드 호출
-	String num=request.getParameter("num");
-	SinsangDao dao=new SinsangDao();
-	dao.deleteSinsang(num);
+	MallDao dao=new MallDao();
 	
-	//리스트로 이동
-	response.sendRedirect("list.jsp");
 %>
+<body>
+
 </body>
 </html>

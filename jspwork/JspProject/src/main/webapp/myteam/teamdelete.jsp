@@ -1,5 +1,4 @@
-<%@page import="model.sinsang.SinsangDao"%>
-<%@page import="jakarta.websocket.SendResult"%>
+<%@page import="model.myteam.TeamDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,8 +15,8 @@
 <%
 	//삭제메소드 호출
 	String num=request.getParameter("num");
-	SinsangDao dao=new SinsangDao();
-	dao.deleteSinsang(num);
+	TeamDao dao=new TeamDao();
+	dao.deleteMyTeam(num);
 	
 	//리스트로 이동
 	response.sendRedirect("list.jsp");
