@@ -37,7 +37,7 @@ public class IntroDao {
 	}
 	
 	//select 조회
-	public ArrayList<IntroDto> getIntro()
+	public ArrayList<IntroDto> selectIntro()
 	{
 		ArrayList<IntroDto> list=new ArrayList<IntroDto>();
 		

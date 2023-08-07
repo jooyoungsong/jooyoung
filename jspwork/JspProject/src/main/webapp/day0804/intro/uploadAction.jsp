@@ -1,3 +1,5 @@
+<%@page import="model.intro.IntroDao"%>
+<%@page import="model.intro.IntroDto"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -14,47 +16,26 @@
 </head>
 <body>
  <%
- 	ServletContext context=getServletContext();
- 	String realFolder=context.getRealPath("/save");
+ 	String num=request.getParameter("num");
+ 	String name=request.getParameter("intro_name");
+ 	String blood=request.getParameter("intro_blood");
+ 	String hp=request.getParameter("intro_hp");
+ 	String city=request.getParameter("intro_city");
+ 	String gaipday=request.getParameter("gaipday");
  	
- 	System.out.println(realFolder);
+ 	IntroDto dto=new IntroDto();
  	
- 	int fileSize=1024*1024*5; //5 mega-byte를 의미
+ 	dto.setIntro_num(num);
+ 	dto.setIntro_name(name);
+ 	dto.setIntro_blood(blood);
+ 	dto.setIntro_hp(hp);
+ 	dto.setIntro_city(city);
  	
- 	MultipartRequest multi=null;
+ 	IntroDao dao=new IntroDao();
  	
- 	try{
- 	multi=new MultipartRequest(request,realFolder,fileSize,"utf-8",new DefaultFileRenamePolicy());
+ 	dao.updateIntro(dto);
  	
- 	String name=multi.getParameter("name");
- 	String title=multi.getParameter("title");
- 	String uploadFileName=multi.getFilesystemName("uploadFile");
- 	String originalfileName=multi.getOriginalFileName("uploadFile");
- 	
- 	%>
- 	
- 		<table class="table table-bordered" style="width:300px;">
- 			<tr>
- 			<th>이름</th>
- 			<td><%=name %></td>
- 			</tr>
- 			<tr>
- 			<th>제목</th>
- 			<td><%=title %></td>
- 			</tr>
- 			<tr>
- 			<th>업로드 파일명</th>
- 			<td><img src="../save/<%=uploadFileName%>"></td>
- 			</tr>
- 			<tr>
- 				<td>
- 					<input type="button" value="업로드 다시 하기" onclick="location.href=uploadForm.jsp">
- 				</td>
- 			</tr>
- 		</table>
- 	<%}catch(Exception e){  //해당 try-catch문은 직접 써줬음
- 		
- 	}
+ 	response.sendRedirect("list.jsp");
  %>
 </body>
 </html>

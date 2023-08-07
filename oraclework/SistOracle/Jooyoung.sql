@@ -964,3 +964,15 @@ delete from mymall where num=51;
 --day0804(1)
 create table intro(intro_num number(5) primary key, intro_name varchar2(10),intro_blood varchar2(5),
 intro_hp varchar2(20), intro_city varchar2(30), gaipday date);
+
+
+select * from intro;
+-------------------------------------------------------------------
+--day0807(1)
+create table memo(num number(3) primary key,writer varchar2(10),story varchar2(500),avata varchar2(50),writeday date);
+
+drop table memo;
+
+insert into memo values(seq1.nextval,'전성','나 오늘 외롭다','../flower_ani/s1.JPG',sysdate);
+
+commit;

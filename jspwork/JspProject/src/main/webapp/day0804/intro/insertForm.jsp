@@ -9,29 +9,42 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <title>Insert title here</title>
+<script>
+	function mousecusor(text)
+	{
+		if(text.value.length==4)
+			{
+				$("#hp3").focus();
+			}
+	}
+</script>
 </head>
 <body>
 	<form action="insertAction.jsp" method="post">
-		<table class="table table-bordered" style="width:300px">
+		<table class="table table-bordered" style="width:600px">
 		<tr>
 			<th>Name</th>
 			<td>
-				<input type="text" id="name" name="intro_name" class="form-control"
+				<input type="text" id="name" name="intro_name"
 				required="required" style="width:120px;" palceholder="이름">
 			</td>
 		</tr>
 		<tr>
 			<th>Blood Type</th>
 			<td>
-				<input type="text" name="intro_name" class="form-control"
-				required="required" style="width:50px;" palceholder="이름">
+				<select name="intro_blood"style="width:60px;" >
+					<option value="A형">A형</option>
+					<option value="B형">B형</option>
+					<option value="O형">O형</option>
+					<option value="AB형">AB형</option>
+					
+				</select>
 			</td>
 		</tr>
 		<tr>
 			<th>Phone number</th>
 			<td>
-				<div style="float:left">
-				<select name="hp1" id="hp" class="form-control" style="width:60px;">
+				<select name="hp1" id="hp" style="width:60px;" >
 					<option value="010">010</option>
 					<option value="011">011</option>
 					<option value="016">016</option>
@@ -39,17 +52,22 @@
 					<option value="019">019</option>
 					<option value="070">070</option>
 				</select>
-				<input type="text" name="hp2" class="form-control"
-				required="required" size="3" maxlength="4" style="width:70px;" onkeydown="onKeyDownEvent(event);">
-				<input type="text" name="hp3" class="form-control"
-				required="required" size="3" maxlength="4" style="width:70px;" onkeydown="onKeyDownEvent(event);">
-				</div>
+				-
+				<input type="text" name="hp2" id="hp2"
+				required="required" size="3" maxlength="4" style="width:70px;" onkeydown="mousecusor(this);">
+				-
+				<input type="text" name="hp3" id="hp3"
+				required="required" size="3" maxlength="4" style="width:70px;" >
 			</td>
+		</tr>
 		<tr>
 			<th>City</th>
 			<td>
-				<input type="radiobutton" name="city" class="form-control"
-				required="required" style="width:50px;">
+				<input type="radio" name="city" value="한국">한국
+				<input type="radio" name="city" value="미국">미국
+				<input type="radio" name="city" value="영국">영국
+				<input type="radio" name="city" value="중국">중국
+				<input type="radio" name="city" value="일본">일본		
 			</td>
 		</tr>
 		<tr>
@@ -61,15 +79,6 @@
 		</tr>
 		</table>
 	</form>
-	<script type="text/javascript">
-		const onKeyDownMovement=(event){
-			const inputEl = documet.getElementsByName(event.target.name)[0];
-			
-			//next input
-			if(event.target.value.length===event.target.maxLength
-					&&event)
-		}
 	
-	</script>
 </body>
 </html>

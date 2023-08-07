@@ -1,3 +1,5 @@
+<%@page import="model.intro.IntroDto"%>
+<%@page import="model.intro.IntroDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,6 +13,28 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+	request.setCharacterEncoding("UTF-8");	
+	
+	String num=request.getParameter("num");
+	String name=request.getParameter("intro_name");
+	String blood=request.getParameter("intro_blood");
+	String hp=request.getParameter("hp1")+"-"+request.getParameter("hp2")+"-"+request.getParameter("hp3");
+	String city=request.getParameter("city");
+	String gaipday=request.getParameter("gaipday");
 
+	IntroDto dto=new IntroDto();
+	dto.setIntro_num(num);
+	dto.setIntro_name(name);
+	dto.setIntro_blood(blood);
+	dto.setIntro_hp(hp);
+	dto.setIntro_city(city);
+	
+	IntroDao dao=new IntroDao();
+	dao.insertIntro(dto);
+	
+	response.sendRedirect("list.jsp");
+	
+%>
 </body>
 </html>
