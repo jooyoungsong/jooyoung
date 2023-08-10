@@ -15,6 +15,7 @@
 </head>
 <%
 	String num=request.getParameter("num");
+    System.out.println(num);
 	IntroDao dao=new IntroDao();
 	IntroDto dto=dao.getData(num);
 	StringTokenizer tk=new StringTokenizer(dto.getIntro_hp(),"-");
@@ -24,23 +25,23 @@
 %>
 <body>
 <form action="updateAction.jsp" method="post">
-<input type="hidden" name="num" <%=num %>>
+<input type="hidden" name="num" value="<%=num %>">
 		<table class="table table-bordered" style="width:600px">
 		<tr>
 			<th>Name</th>
 			<td>
 				<input type="text" id="name" name="intro_name" value="<%=dto.getIntro_name() %>"
-				required="required" style="width:120px;" palceholder="이름">
+				required="required" style="width:120px;" placeholder="이름">
 			</td>
 		</tr>
 		<tr>
 			<th>Blood Type</th>
 			<td>
 				<select name="intro_blood"style="width:60px;">
-					<option value="A형" <%=dto.getIntro_blood().equals("A형")?"selected":"" %>>A형</option>
-					<option value="B형" <%=dto.getIntro_blood().equals("B형")?"selected":"" %>>B형</option>
-					<option value="O형" <%=dto.getIntro_blood().equals("O형")?"selected":"" %>>O형</option>
-					<option value="AB형" <%=dto.getIntro_blood().equals("AB형")?"selected":"" %>>AB형</option>
+					<option value="A" <%=dto.getIntro_blood().equals("A형")?"selected":"" %>>A형</option>
+					<option value="B" <%=dto.getIntro_blood().equals("B형")?"selected":"" %>>B형</option>
+					<option value="O" <%=dto.getIntro_blood().equals("O형")?"selected":"" %>>O형</option>
+					<option value="AB" <%=dto.getIntro_blood().equals("AB형")?"selected":"" %>>AB형</option>
 					
 				</select>
 			</td>

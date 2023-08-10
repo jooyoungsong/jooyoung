@@ -1,4 +1,4 @@
-<%@page import="model.intro.IntroDao"%>
+<%@page import="db.memo.MemoDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,11 +13,11 @@
 </head>
 <body>
 <%
-String num=request.getParameter("num");
-IntroDao dao=new IntroDao();
-dao.deleteIntro(num);
+	
+	MemoDao dao=new MemoDao();
+	String num=request.getParameter("num");
+	dao.deleteMemo(num);
 
-response.sendRedirect("list.jsp");
 %>
 </body>
 </html>

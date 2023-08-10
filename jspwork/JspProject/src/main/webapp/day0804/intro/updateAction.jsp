@@ -16,12 +16,14 @@
 </head>
 <body>
  <%
+ 	request.setCharacterEncoding("utf-8");
+ 
  	String num=request.getParameter("num");
  	String name=request.getParameter("intro_name");
  	String blood=request.getParameter("intro_blood");
- 	String hp=request.getParameter("intro_hp");
- 	String city=request.getParameter("intro_city");
- 	String gaipday=request.getParameter("gaipday");
+ 	String hp=request.getParameter("hp1")+"-"+request.getParameter("hp2")+"-"+request.getParameter("hp3");
+ 	String city=request.getParameter("city");
+ 	//String gaipday=request.getParameter("gaipday");
  	
  	IntroDto dto=new IntroDto();
  	

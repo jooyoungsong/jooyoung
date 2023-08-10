@@ -45,7 +45,7 @@ public class IntroDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-		String sql="selec * from intro order by intro_num";
+		String sql="select * from intro order by intro_num";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -60,7 +60,7 @@ public class IntroDao {
 				dto.setIntro_name(rs.getString("intro_name"));
 				dto.setIntro_blood(rs.getString("intro_blood"));
 				dto.setIntro_hp(rs.getString("intro_hp"));
-				dto.setIntro_city("intro_city");
+				dto.setIntro_city(rs.getString("intro_city"));
 				dto.setGaipday(rs.getTimestamp("gaipday"));
 				
 				list.add(dto);
@@ -107,7 +107,7 @@ public class IntroDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-		String sql="select * from intro where num=?";
+		String sql="select * from intro where intro_num=?";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -139,7 +139,7 @@ public class IntroDao {
 		Connection conn=db.getConnection();
 		PreparedStatement pstmt=null;
 		
-		String sql="update intro set intro_name=?, intro_blood=?, intro_hp=?, intro_city=?";
+		String sql="update intro set intro_name=?, intro_blood=?, intro_hp=?, intro_city=? where intro_num=?";
 		
 		try {
 			
@@ -148,6 +148,7 @@ public class IntroDao {
 			pstmt.setString(2, dto.getIntro_blood());
 			pstmt.setString(3, dto.getIntro_hp());
 			pstmt.setString(4, dto.getIntro_city());
+			pstmt.setString(5, dto.getIntro_num());
 			pstmt.execute();
 			
 		} catch (SQLException e) {

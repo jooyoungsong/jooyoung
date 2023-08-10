@@ -30,6 +30,7 @@
 		<th width="200">연락처</th>
 		<th width="60">도시</th>
 		<th width="120">가입일</th>
+		<th width="120">수정|삭제</th>
 	</tr>
 	
 	<%
@@ -39,16 +40,16 @@
 		%>
 			<tr>
 				<td align="center"><%=(i+1) %></td>
-				<td align="center"><%=dto.getIntro_name() %></td>
+				<td align="center" onclick="location.href='Introdetail.jsp?num=<%=dto.getIntro_num()%>'"><%=dto.getIntro_name() %></td>
 				<td align="center"><%=dto.getIntro_blood() %></td>
 				<td align="center"><%=dto.getIntro_hp() %></td>
 				<td align="center"><%=dto.getIntro_city() %></td>
-				<td align="center"><%=dto.getGaipday() %></td>
+				<td align="center"><%=sdf.format(dto.getGaipday()) %></td>
 				<td>
 					<button type="button" class="btn btn-outline-info btn-sm"
-					onclick="location.href='uploadForm.jsp?num=<%=dto.getIntro_num()%>'">수정</button>
+					onclick="location.href='updateForm.jsp?num=<%=dto.getIntro_num()%>'">수정</button>
 					<button type="button" class="btn btn-outline-danger btn-sm"
-					onclick="location.href='introdelete.jsp?num=<%=dto.getIntro_num()%>'">삭제</button>
+					onclick="location.href='deleteIntro.jsp?num=<%=dto.getIntro_num()%>'">삭제</button>
 				</td>
 			</tr>
 		<%}

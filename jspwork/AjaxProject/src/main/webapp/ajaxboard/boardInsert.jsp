@@ -1,3 +1,5 @@
+<%@page import="db.ajaxboard.ajaxboardDto"%>
+<%@page import="db.ajaxboard.ajaxboardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,6 +13,23 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+ajaxboardDao dao=new ajaxboardDao();
 
+	request.setCharacterEncoding("utf-8");
+	
+	String writer= request.getParameter("writer");
+	String subject= request.getParameter("subject");
+	String story= request.getParameter("story");
+	String avata= request.getParameter("avata");
+
+	ajaxboardDto dto = new ajaxboardDto();
+	dto.setWriter(writer);
+	dto.setSubject(subject);
+	dto.setStory(story);
+	dto.setAvata(avata);
+	
+	dao.insertBoard(dto);
+%>
 </body>
 </html>

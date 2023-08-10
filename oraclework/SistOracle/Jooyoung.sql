@@ -976,3 +976,28 @@ drop table memo;
 insert into memo values(seq1.nextval,'전성','나 오늘 외롭다','../flower_ani/s1.JPG',sysdate);
 
 commit;
+
+select * from memo;
+
+select * from intro;
+
+delete from intro where intro_num=105;
+
+delete from memo where num=41;
+
+insert into memo values(seq1.nextval,'라이언','하트뿅뿅','../avata/b3.png',sysdate);
+commit;
+--------------------------------------------------------------------
+--day0809(1)
+create table ajaxboard(num number(3) primary key, writer varchar2(20),
+subject varchar2(100), story varchar2(1000), avata varchar2(50), writeday date);
+
+drop table ajaxboard;
+
+select * from ajaxboard;
+
+insert into ajaxboard values(seq_1.nextval,'해리','오늘영화보실분','오늘쿠폰이 지급됩니다','../avata/b1.png',sysdate);
+
+commit;
+----------------
+alter table intro modify intro_name varchar2(100);
