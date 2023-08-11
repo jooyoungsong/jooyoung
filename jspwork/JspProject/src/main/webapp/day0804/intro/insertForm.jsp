@@ -26,7 +26,7 @@
 			<th>Name</th>
 			<td>
 				<input type="text" id="name" name="intro_name"
-				required="required" style="width:120px;" palceholder="이름">
+				required="required" style="width:120px;" placeholder="이름">
 			</td>
 		</tr>
 		<tr>
