@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu:wght@700&family=Nanum+Pen+Script&family=Single+Day&display=swap&family=Permanent+Marker&display=swap&family=Do+Hyeon&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
 <style>
 		.imgbox{
@@ -39,7 +38,7 @@
 	margin-bottom: -22px;
 	
 }
-input{
+#chk1{
 	position: absolute; left:-1000%;
 }
 
@@ -53,8 +52,8 @@ label:after
 border-radius:100%; background:#fff; transform:translateY(-25%); box-shadow:1px 3px 4px rgba(0,0,0,1);
 background: 0.4s;}
 
-input:checked + label{ background:#f1bc31;}
-input:checked + label:after{ left:inherit; right:2.5px;}
+#chk1:checked + label{ background:#f1bc31;}
+#chk1:checked + label:after{ left:inherit; right:2.5px;}
 
 
 /*  label span{display:none;}*/
@@ -63,6 +62,7 @@ h1{
 	cursor: pointer;
 }
 </style>
+
 </head>
 <body>
 <div class="p-5 bg-white text-black text-center" style="height:250px; padding:10px;">
@@ -115,45 +115,54 @@ h1{
       </div>
     </div>
   </header>
-<div class="imgbox">
-<div>
-	
-		<div id="carouselExampleIndicators" class="carousel slide">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-        <video muted autoplay playsinline class="videoth">
-					<source src="https://nexen-front.s3.amazonaws.com/video/keyvisual_02230614.mp4" type="" />
-				</video>
-    </div>
-    <div class="carousel-item">
-        <video muted autoplay playsinline class="videoth">
-					<source src="https://nexen-front.s3.ap-northeast-2.amazonaws.com/kr/kr_02.mp4" type="" />
-				</video>
-    </div>
-    <div class="carousel-item">
-       <video muted autoplay playsinline class="videoth">
-					<source src="https://nexen-front.s3.ap-northeast-2.amazonaws.com/kr/kr_03.mp4" type="" />
-				</video>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-  
-</div>
-</div>
+	<div style="margin: 50px; 100px;">
+		<form action="insertAction.jsp" method="post" enctype="multipart/form-data"
+			class="form-inline" id="mfrm">
+			<table class="table table-bordered" style="width: 500px;">
+				<caption align="top">
+					<h2 style="font-family:Do Hyeon; font-size:2em; color:black;">견적등록</h2>
+				</caption>
+				<tr>
+					<td style="background-color: #66cdaa" width="120">차주이름</td>
+					<td><input type="text" class="form-control" name="name"
+						style="width: 120px;" required="required"></td>
+				</tr>
+				<tr>
+					<td style="background-color: #66cdaa" width="120">차종</td>
+					<td><input type="text" class="form-control"
+						style="width: 120px;" name="cname" required="required"></td>
+				</tr>
 
+				<tr>
+					<td style="background-color: #66cdaa" width="120">차량번호</td>
+					<td><input type="text" class="form-control"
+						style="width: 120px;" name="cid" required="required"></td>
+				</tr>
+
+				<tr>
+					<td style="background-color: #66cdaa" width="120">차량이미지</td>
+					<td><input type="file" class="form-control"
+						style="width: 250px;" name="uploadImage"></td>
+				</tr>
+				
+				<tr>
+					<td style="background-color: #66cdaa" width="120">부품</td>
+					<td><input type="checkbox" name="device" value="엔진오일">엔진오일
+					<input type="checkbox" name="device" value="타이어">타이어
+					<input type="checkbox" name="device" value="엔진">엔진
+					<input type="checkbox" name="device" value="백미러">백미러</td>
+				</tr>
+
+				<tr>
+					<td colspan="2" align="center">
+						<button type="submit" class="btn btn-success">견적등록</button>
+						<button type="button" class="btn btn-warning"
+							onclick="location.href='carList.jsp'">회원목록</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
 <div class="p-3 bg-dark text-white" style="font-size:0.8em; text-align:center;">
   <p>고객문의 &nbsp 이용약관 &nbsp 개인정보처리방침</p>
   <hr>

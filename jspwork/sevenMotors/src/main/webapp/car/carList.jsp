@@ -1,18 +1,24 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="model.car.carDto"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.car.carDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu:wght@700&family=Nanum+Pen+Script&family=Single+Day&display=swap&family=Permanent+Marker&display=swap&family=Do+Hyeon&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu:wght@700&family=Nanum+Pen+Script&family=Single+Day&display=swap&family=Permanent+Marker&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <title>Insert title here</title>
-<style>
-		.imgbox{
+<style type="text/css">
+   tr:hover{
+      background-color: white;
+   }
+   
+   		.imgbox{
 			width: 100%;
 			height:800px;
 			overflow:hidden;
@@ -56,15 +62,20 @@ background: 0.4s;}
 input:checked + label{ background:#f1bc31;}
 input:checked + label:after{ left:inherit; right:2.5px;}
 
-
-/*  label span{display:none;}*/
-
 h1{
 	cursor: pointer;
 }
+   
 </style>
 </head>
+
 <body>
+<%
+   carDao dao=new carDao();
+   ArrayList<carDto> list=dao.selectCar();
+   SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+%>
+
 <div class="p-5 bg-white text-black text-center" style="height:250px; padding:10px;">
  
   
@@ -115,43 +126,68 @@ h1{
       </div>
     </div>
   </header>
-<div class="imgbox">
+
 <div>
-	
-		<div id="carouselExampleIndicators" class="carousel slide">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-        <video muted autoplay playsinline class="videoth">
-					<source src="https://nexen-front.s3.amazonaws.com/video/keyvisual_02230614.mp4" type="" />
-				</video>
-    </div>
-    <div class="carousel-item">
-        <video muted autoplay playsinline class="videoth">
-					<source src="https://nexen-front.s3.ap-northeast-2.amazonaws.com/kr/kr_02.mp4" type="" />
-				</video>
-    </div>
-    <div class="carousel-item">
-       <video muted autoplay playsinline class="videoth">
-					<source src="https://nexen-front.s3.ap-northeast-2.amazonaws.com/kr/kr_03.mp4" type="" />
-				</video>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-  
-</div>
+   <button type="button" class="btn btn-outline-secondary" onclick="location.href='insertForm.jsp'">차량추가</button>
+   <br><br>
+   <table class="table table-dark" style="width: 1000px;">
+   <tr width="60" align="center" class="table-active">
+      <th width="120">번호</th>
+      <th width="150">차주명</th>
+      <th width="180">차종</th>
+      <th width="200">차량번호</th>
+      <th width="200">부품</th>
+      <th width="250">등록일</th>
+      <th width="180">수정|삭제</th>
+   </tr>
+   
+   <%
+   if(list.size()==0){%>   <%-- insert아무것도 안했을 경우 --%>
+      <tr>
+         <td colspan="7" align="center">
+            <h5>등록된 정보가 없습니다</h5>
+         </td>
+      </tr>
+   <%}
+   else{
+      
+      for(int i=0;i<list.size();i++){
+         carDto dto=list.get(i);
+         %>
+         <tr>
+         
+            <td align="center">
+               <b>No.<%=(i+1) %></b><br>
+               <img alt="" src="<%=dto.getCimage()%>" style="width: 150px;">
+            </td>
+            <td align="center" valign="middle"><%=dto.getName() %></td>
+            <td align="center" valign="middle"><%=dto.getCname() %></td>
+            <td align="center" valign="middle"><%=dto.getCid() %></td>
+            <td align="center" valign="middle"><%=dto.getDevice() %></td>
+            <td align="center" valign="middle"><%=sdf.format(dto.getCdate()) %></td>
+            <td align="center" valign="middle">
+               <button type="button" class="btn btn-outline-success btn-sm" onclick="location.href='updateForm.jsp?num=<%=dto.getNum()%>'">수정</button>
+               <button type="button" class="btn btn-outline-danger btn-sm" onclick=del(<%=dto.getNum()%>)>삭제</button>
+            </td>
+            
+         </tr>
+
+      <%}
+   }
+   %>
+   
+   
+   
+   <script>
+      function del(num){
+         var a=confirm("정말 삭제하겠습니까?")
+         
+         if(a){
+            location.href="deleteCar.jsp?num="+num;
+         }
+      }
+   </script>
+   </table>
 </div>
 
 <div class="p-3 bg-dark text-white" style="font-size:0.8em; text-align:center;">
@@ -166,6 +202,5 @@ h1{
   
   <h5 style="color:gray; font-size:0.5px;">Copyrightⓒ2023 SevenMotors.all rights reserved.</h5>
 </div>
-
 </body>
 </html>
