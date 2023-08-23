@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu:wght@700&family=Nanum+Pen+Script&family=Single+Day&display=swap');
+body{
+    font-family: 'Gaegu';
+}
+
+.btn{
+    width: 120px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.btn-green{
+    background-color: green;
+    color: white;
+    border: none;
+    font-size: 12px;
+}
+
+.btn-pink{
+    background-color: pink;
+    color: white;
+    border: none;
+    font-size: 12px;
+}
+
+.btn-skyblue{
+    background-color: skyblue;
+    color: white;
+    border: none;
+    font-size: 12px;
+}
+
+.btn-wheat{
+    background-color: wheat;
+    color: brown;
+    border: none;
+    font-size: 12px;
+}

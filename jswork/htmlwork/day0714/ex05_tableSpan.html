@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu:wght@700&family=Nanum+Pen+Script&family=Single+Day&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        .tb1{
+            width: 400px;
+            border: 5px inset gray;
+            border-collapse: collapse;
+        }
+
+        .tb1 td{
+            border: 1px solid gray;
+            font-family: 'Dongle';
+            font-size: 50px;
+        }
+
+        .tb1 .line{
+            border-top: 5px double red;
+        }
+    </style>
+</head>
+<body>
+    <table class="tb1">
+        <caption><b>[표 span 연습]</b></caption>
+        <tr>
+            <td rowspan="3">
+                <img src="../아이유변신.jpg" width="200"
+                border="1">
+            </td>
+
+            <td>이름: 장순영</td>
+        </tr>
+        <tr>
+            <td>핸드폰: 010-222-4444</td>
+        </tr>
+        <tr>
+            <td>주소:서울시</td>
+        </tr>
+
+        <tr class="line">
+            <td rowspan="3">
+                <img src="../아이유.jpg" width="200" 
+                border="1">
+            </td>
+
+            <td>이름: 아이유</td>
+        </tr>
+        <tr>
+            <td>핸드폰: 010-333-5555</td>
+        </tr>
+        <tr>
+            <td>주소:서울시</td>
+        </tr>
+    </table>
+</body>
+</html>

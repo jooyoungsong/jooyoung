@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Gamja+Flower&family=Hi+Melody&family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Document</title>
+
+</head>
+
+<body>
+    <form>
+        <legend>[0725 과제물]</legend>
+        <table>
+            <tr>
+                <th>당신의 연령대는?</th>
+                <td>
+                    <input type="radio" name="age" value="20대">20대
+                    <input type="radio" name="age" value="30대">30대
+                    <input type="radio" name="age" value="40대">40대
+                    <input type="radio" name="age" value="50대">50대
+                </td>
+            </tr>
+
+            <tr>
+                <th>여행해본 나라는?</th>
+                <td>
+                    <input type="checkbox" name="country" value="미국">미국
+                    <input type="checkbox" name="country" value="영국">영국
+                    <input type="checkbox" name="country" value="중국">중국
+                    <input type="checkbox" name="country" value="스위스">스위스
+                    <input type="checkbox" name="country" value="스페인">스페인
+                </td>
+            </tr>
+
+            <tr>
+                <th>코로나백신 접종 여부</th>
+                <td>
+                    <input type="checkbox" id="injection">Yes
+                </td>
+            </tr>
+
+            <tr>
+                <th>글씨체 선택</th>
+                <td>
+                    <select id="info-font">
+                        <option value="Gamja Flower">Gamja Flower</option>
+                        <option value="Hi Melody">Hi Melody</option>
+                        <option value="IBM plex Sans KR">IBM plex Sans KR</option>
+                        <option value="Diphylleia">Diphylleia</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" align="center">
+                    <button type="button" id="btn" class="btn btn-success">결과전송</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <div id="done"></div>
+    <script>
+        $("#btn").click(function () {
+            var s="";
+            //연령
+            s+= "연령대: " + $("input[name='age']:checked").val() + "<br>";
+
+            //여행
+            var clen = $("input[name='country']:checked").length;
+            if (clen == 0)
+                s+= "여행해본 나라가 없습니다";
+            else {
+                s+= "여행해본나라: " + clen + "개국&nbsp&nbsp";
+                $("input[name='country']:checked").each(function (i) {
+                    s+= "[" + $(this).val() + "]&nbsp&nbsp";
+                });
+            }
+
+            //코로나
+            if($("#injection").is(":checked"))
+                s+="<br>코로나 백신: 맞음";
+            else{
+                s+="<br>코로나 백신: 안맞음";
+            }
+
+            //글씨체
+
+            $("#done").html(s).css("font-family", $("#info-font option:checked").val());
+        });
+    </script>
+</body>
+
+</html>
