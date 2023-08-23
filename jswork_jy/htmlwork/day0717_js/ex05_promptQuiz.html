@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 당신의 키는?
+        180
+        표준몸무게: (키-100)*0.9
+        당신의 표준몸무게는? 72kg입니다 -->
+    <script>
+        var height=Number(prompt("당신의 키는?"));
+        document.write("나의 키는? "+height+"cm입니다<br>");
+
+        var st_weight=(height-100)*0.9;
+        document.write("표준 몸무게는 "+st_weight+"kg입니다<br>")
+
+        //confirm
+        var ans=confirm("정말 삭제하시겠습니까?");
+
+        //if(ans==1)과 if(ans) 같은 말: 결과값이 1개 있으면 or 결과값이 true면!
+        if(ans)
+            document.write("삭제되었습니다<br>");
+        else
+            document.write("삭제가 취소되었습니다<br>");
+
+
+        //eval() : 문자열 내에서 연산이 가능하다
+        var a=eval("10.5+10");
+        document.write(a+"<br>"); //20.5
+        document.write(parseFloat(a)+parseInt(a)+"<br>"); //40.5
+
+        
+        //prompt창에 구구단(원하는단) 입력해서 출력해보자
+        var gugudan=parseInt(prompt("원하는 구구단은?"));
+        document.write("원하는 구구단은? "+gugudan+"단<br>");
+
+        for(var i=1;i<10;i++)
+        {
+            document.write(gugudan+"X"+i+"="+(gugudan*i)+"<br>");
+        }
+    </script>
+</body>
+</html>

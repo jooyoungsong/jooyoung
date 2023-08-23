@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tb1{
+            width: 400px;
+            border: 3px solid gray;
+            border-collapse: collapse;
+        }
+
+        .tb1 td,.tb1 th{
+            border: 1px solid gray;
+        }
+
+        .tb1 tr th{
+            background-color: aqua;
+        }
+
+        .tb1 tr td:hover{
+            background-color: blueviolet;
+            color: white;
+        }
+
+        .tb2{
+            border: 2px solid gray;
+            width: 200px;
+            height: 200px;
+        }
+
+        .tb2 td{
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+<body>
+    <table border="1" style="width: 300px;">
+        <caption><b>[표 1]</b></caption>
+        <tr height="50" bgcolor="orange">
+            <td align="center">하나</td>
+            <td align="right" valign="top">둘</td>
+            <td valign="bottom" bgcolor="gray">셋</td>
+        </tr>
+
+        <tr height="50" align="center">
+            <td colspan="3">세칸합침</td>
+        </tr>
+    </table>
+    
+    <hr>
+
+    <table class="tb1">
+        <caption><b>[표 2]</b></caption>
+        <tr>
+            <th>사진</th>
+            <th>이름</th>
+            <th>핸드폰</th>
+            <th>주소</th>
+        </tr>
+
+        <tr>
+            <td rowspan="4"><img src="../flower_ani/s1.JPG"></td>
+            <td>성신</td>
+            <td>010-222</td>
+            <td>서울시</td>
+        </tr>
+
+        <tr>
+            <td>민규</td>
+            <td>010-333</td>
+            <td>서울시</td>
+        </tr>
+
+        <tr>
+            <td>성현</td>
+            <td>010-555</td>
+            <td>서울시</td>
+        </tr>
+
+        <tr>
+            <td>병주</td>
+            <td>010-666</td>
+            <td>서울시</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <table class="tb2">
+        <caption><b>[표3]</b></caption>
+        <tr>
+            <td rowspan="2">1</td>
+            <td colspan="2">2</td>
+            <td>3</td>
+        </tr>
+
+        <tr>
+            <td colspan="3">4</td>
+        </tr>
+
+        <tr>
+            <td align="center">5</td>
+            <td align="center">6</td>
+            <td align="center">7</td>
+            <td align="center">8</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <table border="2" width="1000px">
+        <caption><b>[아이유]</b></caption>
+        
+        <tr>
+            <th>이름</th>
+            <th>사진</th>
+            <th>신상정보</th>
+        </tr>
+
+        <tr>
+            <td rowspan="5" align="center">아이유</td>
+            <td rowspan="5">
+                   <img src="../아이유.jpg" style="float:left; width: auto; height: auto;">
+            </td>
+            <td>출생 : 1993.05.16</td>
+        </tr>
+
+        <tr>
+            <td>소속사 : EDAM엔터테인먼트</td>
+        </tr>
+
+        <tr>
+            <td>데뷔 : 2008년 미니 앨범 [Lost and Found]</td>
+        </tr>
+
+        <tr>
+            <td>수상경력:<br>
+                2023<br>
+                제59회 백상예술대상 틱톡 인기상<br>
+                2022<br>
+                제14회 멜론뮤직어워드 베스트 솔로 여자<br>
+                2022<br>
+                제14회 멜론뮤직어워드 스테이지 오브 더 이어<br>
+                2022<br>
+                제14회 멜론뮤직어워드 TOP10<br>
+                2022<br>
+                제43회 청룡영화상 청정원 인기스타상<br>
+                2022<br>
+                제42회 한국영화평론가협회상 신인여우상 (브로커)</td>
+        </tr>
+        
+        <tr>
+            <td>최근노래 : Mother Nature (H2O)</td>
+        </tr>
+    </table>
+</body>
+</html>
